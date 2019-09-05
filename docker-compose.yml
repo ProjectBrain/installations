@@ -1,0 +1,40 @@
+version: '3'
+services:
+  alpha_loop:
+    image: projectbrain/brainbits:latest
+    restart: always
+    volumes:
+     - socks:/var/socks
+    command: ['loop.py', 'samples/close_eyes.txt']
+
+  filtered:
+    image: projectbrain/brainbits:latest
+    restart: always
+    volumes:
+     - socks:/var/socks
+    command: ['filtered.py']
+
+  freqs:
+    image: projectbrain/brainbits:latest
+    restart: always
+    volumes:
+     - socks:/var/socks
+    command: ['freqs.py']
+
+  bands:
+    image: projectbrain/brainbits:latest
+    restart: always
+    volumes:
+     - socks:/var/socks
+    command: ['bands.py']
+
+  web:
+    image: projectbrain/brain-web:latest
+    restart: always
+    ports:
+     - 80:8080
+    volumes:
+     - socks:/var/socks
+
+volumes:
+  socks:
