@@ -2,10 +2,20 @@ version: '3'
 services:
   alpha_loop:
     image: projectbrain/brainbits:latest
-    restart: always
+    restart: unless-stopped
     volumes:
      - socks:/var/socks
     command: ['loop.py', 'samples/close_eyes.txt']
+
+  epoc:
+    image: projectbrain/brainbits:latest
+    restart: always
+    volumes:
+     - socks:/var/socks
+    devices:
+     - /dev/hidraw0
+     - /dev/hidraw1
+    command: ['epoc.py']
 
   filtered:
     image: projectbrain/brainbits:latest
