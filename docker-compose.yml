@@ -12,9 +12,9 @@ services:
     restart: always
     volumes:
      - socks:/var/socks
-    devices:
-     - /dev/hidraw0
-     - /dev/hidraw1
+     - /dev:/dev
+    device_cgroup_rules:
+     - 'c *:* rmw'
     command: ['epoc.py']
 
   filtered:
@@ -38,8 +38,16 @@ services:
      - socks:/var/socks
     command: ['bands.py']
 
+  cells:
+    image: projectbrain/braincells:latest
+    restart: always
+    volumes:
+     - socks:/var/socks
+    devices:
+     - /dev/vchiq
+
   web:
-    image: projectbrain/brain-web:latest
+    image: projectbrain/brainweb:latest
     restart: always
     ports:
      - 80:8080
