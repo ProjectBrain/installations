@@ -9,7 +9,7 @@ RUN apk add --no-cache make git py-pip \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
-WORKDIR /example
+WORKDIR /leeds
 
 COPY docker-compose.yml .
 

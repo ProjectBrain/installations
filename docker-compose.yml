@@ -1,14 +1,7 @@
 version: '3'
 services:
-  alpha_loop:
-    image: projectbrain/brainbits:latest
-    restart: unless-stopped
-    volumes:
-     - socks:/var/socks
-    command: ['loop.py', 'samples/close_eyes.txt']
-
   epoc:
-    image: projectbrain/brainbits:latest
+    image: projectbrain/brainbits:stable
     restart: always
     volumes:
      - socks:/var/socks
@@ -18,28 +11,28 @@ services:
     command: ['epoc.py']
 
   filtered:
-    image: projectbrain/brainbits:latest
+    image: projectbrain/brainbits:stable
     restart: always
     volumes:
      - socks:/var/socks
     command: ['filtered.py']
 
   freqs:
-    image: projectbrain/brainbits:latest
+    image: projectbrain/brainbits:stable
     restart: always
     volumes:
      - socks:/var/socks
     command: ['freqs.py']
 
   bands:
-    image: projectbrain/brainbits:latest
+    image: projectbrain/brainbits:stable
     restart: always
     volumes:
      - socks:/var/socks
     command: ['bands.py']
 
   cells:
-    image: projectbrain/braincells:latest
+    image: projectbrain/braincells:classic
     restart: always
     volumes:
      - socks:/var/socks
@@ -47,7 +40,7 @@ services:
      - /dev/vchiq
 
   web:
-    image: projectbrain/brainweb:latest
+    image: projectbrain/brainweb:stable
     restart: always
     ports:
      - 80:8080
