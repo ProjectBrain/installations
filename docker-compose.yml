@@ -3,7 +3,6 @@ services:
   epoc:
     image: projectbrain/brainbits:stable
     restart: always
-    cpus: 0.5
     volumes:
      - socks:/var/socks
      - /dev:/dev
